@@ -1,8 +1,21 @@
 package org.firstinspires.ftc.teamcode.core;
 
-public class Autonomous {
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+public abstract class Autonomous extends OpMode{
 
+    /**
+     * Runs once before the robot starts.
+     * Here we initialize the hardware for the robot.
+     */
+    @Override
+    public void init() {
+
+    }
+
+    /**
+     * Repeats during the match's active time.
+     */
     public void loop(){
 
     }
@@ -15,8 +28,6 @@ public class Autonomous {
     return true;
 }
 
-    /**
-     *
-     */
+
 
 }
