@@ -43,11 +43,12 @@ public class Chassis extends Subsystem{
 
     /**
      * Drives the robot with a basic tank drive.
-     * @param gamepad
+     * @param gamepad1
+     * @param  gamepad2
      */
     @Override
-    public void teleopControls(Gamepad gamepad)
+    public void teleopControls(Gamepad gamepad1, Gamepad gamepad2)
     {
-        tankDrive(gamepad.left_stick_y, gamepad.right_stick_y);
+        tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
     }
 }
