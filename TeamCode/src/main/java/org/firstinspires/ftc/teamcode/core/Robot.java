@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Robot{
     public static Chassis chassis;
     public static ArrayList<Subsystem> modules = new ArrayList<Subsystem>();
-//Store hardware as static variables. at the top.
 public Robot(HardwareMap hwMap)
 
 {
