@@ -1,9 +1,8 @@
 package org.firstinspires.ftc.teamcode.core;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.core.core.subsystems.Subsystem;
+import org.firstinspires.ftc.teamcode.core.subsystems.Subsystem;
 
 
 public class Teleop extends OpMode{

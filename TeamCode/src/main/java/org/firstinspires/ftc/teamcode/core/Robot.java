@@ -1,10 +1,9 @@
 package org.firstinspires.ftc.teamcode.core;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.core.core.subsystems.Chassis;
-import org.firstinspires.ftc.teamcode.core.core.subsystems.Subsystem;
+import org.firstinspires.ftc.teamcode.core.subsystems.Chassis;
+import org.firstinspires.ftc.teamcode.core.subsystems.Subsystem;
 
 import java.util.ArrayList;
 
@@ -21,6 +20,5 @@ public Robot(HardwareMap hwMap)
  chassis = new Chassis(hwMap);
 modules.add(chassis);
 }
-
 
 }
