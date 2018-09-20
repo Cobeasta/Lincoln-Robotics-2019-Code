@@ -1,7 +1,15 @@
 package org.firstinspires.ftc.teamcode.util;
 
 public class Util {
-public static double trim(double num, double min, double max)
+    /**
+     * Forces a number to be between a min and max by trimming it to the max or min if the number
+     * is to great in magnitude.
+     * @param num
+     * @param min
+     * @param max
+     * @return
+     */
+    public static double trim(double num, double min, double max)
 {
     if(num < min) return min;
     if (num > max) return max;
@@ -16,6 +24,8 @@ public static double trim(double num, double min, double max)
      */
     public static double applyDeadband(double num, double deadband)
 {
-    return 0;
+    if(num < deadband && num > -deadband)
+        return 0;
+    return num;
 }
 }
