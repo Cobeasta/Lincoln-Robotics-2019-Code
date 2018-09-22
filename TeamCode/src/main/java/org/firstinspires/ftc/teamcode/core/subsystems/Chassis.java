@@ -51,4 +51,9 @@ public class Chassis extends Subsystem{
     {
         tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
     }
+    @Override
+    public void stop(){
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+    }
 }

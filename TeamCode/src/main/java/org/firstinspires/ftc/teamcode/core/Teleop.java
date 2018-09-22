@@ -24,4 +24,14 @@ public class Teleop extends OpMode{
             system.teleopControls(gamepad1, gamepad2);
         }
     }
+
+    /**
+     * Stops all subsystems.
+     */
+    @Override
+    public void stop(){
+        for(Subsystem system: Robot.modules){
+            system.stop();
+        }
+    }
 }
