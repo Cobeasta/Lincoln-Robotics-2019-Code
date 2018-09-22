@@ -9,13 +9,18 @@ private ArrayList<Command> commands = new ArrayList<Command>();
 private ArrayList<Command> activeCommands = new ArrayList<Command>();
 
     private State state;
+
+    /**
+     * Requires the autonomous to add the commands that will run for the duration of autonomous
+     */
+    public abstract void addCommands();
     /**
      * Runs once before the robot starts.
      * Here we initialize the hardware for the robot.
      */
     @Override
     public void init() {
-
+        addCommands();
         state = State.INIT;
         activeCommands.add(commands.get(0));
 //Now parse through the next commands and check if they are meant to run at the current command.
