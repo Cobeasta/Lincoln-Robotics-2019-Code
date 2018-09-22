@@ -1,16 +1,19 @@
 package org.firstinspires.ftc.teamcode.core;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.core.subsystems.Subsystem;
 
-
-public class Teleop extends OpMode{
+@TeleOp(name="teleop",group="")
+public class Teleop extends OpMode
+{
     /**
      * Initialize any subsystems that need initializing before the game starts.
      */
     @Override
-    public void init() {
+    public void init()
+    {
 
     }
 
@@ -18,10 +21,12 @@ public class Teleop extends OpMode{
      * Calls the teleop control method in all subsystems.
      */
     @Override
-    public void loop() {
+    public void loop()
+    {
         for(Subsystem system: Robot.modules)
         {
             system.teleopControls(gamepad1, gamepad2);
+
         }
     }
 
@@ -29,8 +34,10 @@ public class Teleop extends OpMode{
      * Stops all subsystems.
      */
     @Override
-    public void stop(){
-        for(Subsystem system: Robot.modules){
+    public void stop()
+    {
+        for(Subsystem system: Robot.modules)
+        {
             system.stop();
         }
     }

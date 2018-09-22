@@ -3,6 +3,10 @@ package org.firstinspires.ftc.teamcode.core;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.core.subsystems.Chassis;
+import org.firstinspires.ftc.teamcode.core.subsystems.Elevator;
+import org.firstinspires.ftc.teamcode.core.subsystems.IntakeFlipper;
+import org.firstinspires.ftc.teamcode.core.subsystems.IntakeMotor;
+import org.firstinspires.ftc.teamcode.core.subsystems.LiftFlipper;
 import org.firstinspires.ftc.teamcode.core.subsystems.Subsystem;
 
 import java.util.ArrayList;
@@ -12,12 +16,26 @@ import java.util.ArrayList;
  */
 public class Robot{
     public static Chassis chassis;
+    public static Elevator elevator;
+    public static IntakeFlipper intakeFlipper;
+    public static LiftFlipper liftFlipper;
+    public static IntakeMotor intakeMotor;
     public static ArrayList<Subsystem> modules = new ArrayList<Subsystem>();
+
 public Robot(HardwareMap hwMap)
 
 {
  chassis = new Chassis(hwMap);
+ elevator = new Elevator(hwMap);
+ intakeFlipper = new IntakeFlipper(hwMap);
+liftFlipper = new LiftFlipper(hwMap);
+intakeMotor = new IntakeMotor(hwMap);
+
 modules.add(chassis);
+modules.add(elevator);
+modules.add(intakeFlipper);
+modules.add(liftFlipper);
+modules.add(intakeMotor);
 }
 
 }

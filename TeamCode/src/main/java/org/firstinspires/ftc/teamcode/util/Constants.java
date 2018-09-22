@@ -6,4 +6,9 @@ package org.firstinspires.ftc.teamcode.util;
  * and store any other constants that are used in the code.
  */
 public class Constants {
+    public static String elevatorMotor = "liftmotor";
+    public static String intakeFlipper = "intakeflipper";
+    public static String liftFlipper = "leftflipper";
+    public static String intakeMotor = "intakemotor";
+
 }

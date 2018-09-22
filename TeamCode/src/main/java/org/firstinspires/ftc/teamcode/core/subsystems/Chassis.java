@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.util.Util;
 
 public class Chassis extends Subsystem{
-   DcMotor leftDrive, rightDrive;
+ private DcMotor leftDrive, rightDrive;
 
    public Chassis(HardwareMap hw){
        super(hw);
