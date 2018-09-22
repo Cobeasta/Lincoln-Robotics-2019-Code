@@ -12,13 +12,13 @@ public class LiftFlipper extends Subsystem {
     public LiftFlipper(HardwareMap map) {
         super(map);
         flipper = hardwaremap.servo.get(Constants.liftFlipper);
+
     }
 
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
-        if(gamepad2.dpad_up) pos = 1;
-        else if(gamepad2.dpad_down) pos = 0;
-        flipper.setPosition(pos);
+        if(gamepad2.dpad_down) flipper.setPosition(1);
+        else if(gamepad2.dpad_up) flipper.setPosition(.45);
     }
 
     @Override

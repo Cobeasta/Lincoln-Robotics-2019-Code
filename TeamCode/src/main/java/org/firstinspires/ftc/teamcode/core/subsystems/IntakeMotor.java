@@ -11,6 +11,7 @@ public class IntakeMotor extends Subsystem {
     public IntakeMotor(HardwareMap map) {
         super(map);
         motor = hardwaremap.dcMotor.get(Constants.intakeMotor);
+        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     @Override

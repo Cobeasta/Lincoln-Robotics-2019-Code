@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * This class will store static instances of each of the modules.
  */
 public class Robot{
+    public static boolean initialized = false;
     public static Chassis chassis;
     public static Elevator elevator;
     public static IntakeFlipper intakeFlipper;
@@ -22,7 +23,11 @@ public class Robot{
     public static IntakeMotor intakeMotor;
     public static ArrayList<Subsystem> modules = new ArrayList<Subsystem>();
 
-public Robot(HardwareMap hwMap)
+    /**
+     * Initialize subsystems and add them to the modules list.
+     * @param hwMap
+     */
+    public Robot(HardwareMap hwMap)
 
 {
  chassis = new Chassis(hwMap);
@@ -36,6 +41,7 @@ modules.add(elevator);
 modules.add(intakeFlipper);
 modules.add(liftFlipper);
 modules.add(intakeMotor);
+initialized = true;
 }
 
 }

@@ -38,7 +38,6 @@ public class Chassis extends Subsystem{
        leftDrive.setPower(Util.trim(power + turn, -1, 1));
        rightDrive.setPower(Util.trim(power - turn, -1, 1));
 
-
     }
 
     /**

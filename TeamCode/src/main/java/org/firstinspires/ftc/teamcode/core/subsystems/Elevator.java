@@ -13,6 +13,7 @@ public class Elevator extends Subsystem {
     public Elevator(HardwareMap map) {
         super(map);
         upAndDown = map.dcMotor.get(Constants.elevatorMotor);
+        upAndDown.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     @Override

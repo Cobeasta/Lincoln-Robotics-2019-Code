@@ -8,7 +8,7 @@ package org.firstinspires.ftc.teamcode.util;
 public class Constants {
     public static String elevatorMotor = "liftmotor";
     public static String intakeFlipper = "intakeflipper";
-    public static String liftFlipper = "leftflipper";
+    public static String liftFlipper = "liftflipper";
     public static String intakeMotor = "intakemotor";
 
 }
