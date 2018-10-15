@@ -15,6 +15,7 @@ public class Teleop extends OpMode
     public void init()
     {
         new Robot(hardwareMap);
+        Robot.chassis.startAccelerationIntegration();
     }
 
     /**
@@ -26,7 +27,7 @@ public class Teleop extends OpMode
         for(Subsystem system: Robot.modules)
         {
             system.teleopControls(gamepad1, gamepad2);
-
+            telemetry.addData(system.toString(), system.addTelemetry() + "\n\n");
         }
     }
 

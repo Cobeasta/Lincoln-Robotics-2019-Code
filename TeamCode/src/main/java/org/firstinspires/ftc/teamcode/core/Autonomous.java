@@ -20,7 +20,9 @@ private ArrayList<Command> activeCommands = new ArrayList<Command>();
      */
     @Override
     public void init() {
+        new Robot(hardwareMap);
         addCommands();
+        Robot.chassis.startGyro();
         state = State.INIT;
         activeCommands.add(commands.get(0));
 //Now parse through the next commands and check if they are meant to run at the current command.

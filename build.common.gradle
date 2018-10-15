@@ -67,6 +67,8 @@ android {
         versionName vName
     }
 
+
+
     // Advanced user code might just want to use Vuforia directly, so we set up the libs as needed
     buildTypes {
         release {
@@ -94,10 +96,10 @@ android {
         jniLibs.srcDir rootProject.file('libs')
     }
 }
-
 repositories {
     flatDir {
         dirs rootProject.file('libs')
+
     }
 }
 apply from: 'build.release.gradle'

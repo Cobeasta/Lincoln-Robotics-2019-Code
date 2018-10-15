@@ -10,5 +10,6 @@ public class Constants {
     public static String intakeFlipper = "intakeflipper";
     public static String liftFlipper = "liftflipper";
     public static String intakeMotor = "intakemotor";
-
+    public static String leftDrive = "leftdrive";
+    public static String rightDrive = "rightdrive";
 }

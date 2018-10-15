@@ -15,5 +15,6 @@ public abstract class Subsystem {
         this.hardwaremap = map;
     }
     public abstract void teleopControls(Gamepad gamepad1, Gamepad gamepad2);
+    public abstract String addTelemetry();
     public abstract void stop();
 }
