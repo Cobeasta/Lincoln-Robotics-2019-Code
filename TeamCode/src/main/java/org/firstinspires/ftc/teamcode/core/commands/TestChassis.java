@@ -8,11 +8,11 @@ import java.util.Date;
 /**
  * Not to be run in competition. This tests the functionality of the Autonomous design.
  */
-public class TestCommand extends Command {
+public class TestChassis extends Command {
   private long startTime;
   private long runtime;
   private boolean finished;
-  public TestCommand()
+  public TestChassis()
   {
 
   }
