@@ -123,11 +123,20 @@ public class Chassis extends Subsystem{
     {
         tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
     }
+
+    /**
+     * Sets power to motors to zero. Always call when done using this class for safety.
+     */
     @Override
     public void stop(){
         leftDrive.setPower(0);
         rightDrive.setPower(0);
     }
+
+    /**
+     * Called during op modes to provide information aobut this subsystem.
+     * @return Returns the text to add to the bottom of the  driver station.
+     */
     @Override
     public String addTelemetry()
     {

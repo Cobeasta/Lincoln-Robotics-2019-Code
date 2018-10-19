@@ -14,7 +14,7 @@ public class Teleop extends OpMode
     @Override
     public void init()
     {
-        new Robot(hardwareMap);
+      if(!Robot.initialized)  new Robot(hardwareMap);
         Robot.chassis.startAccelerationIntegration();
     }
 
