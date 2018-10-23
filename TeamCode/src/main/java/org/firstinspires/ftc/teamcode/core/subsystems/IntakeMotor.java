@@ -16,7 +16,12 @@ public class IntakeMotor extends Subsystem {
 
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
-        motor.setPower(gamepad2.left_stick_y);
+        motor.setPower(.25 * gamepad2.left_stick_y);
+    }
+
+    @Override
+    public String addTelemetry() {
+        return "";
     }
 
     @Override

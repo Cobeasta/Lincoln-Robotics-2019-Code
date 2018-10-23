@@ -7,18 +7,39 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.util.Constants;
 
 public class LiftFlipper extends Subsystem {
-    private double pos = 0;
+    //private double pos = flipper.setPosition(0);
     private Servo flipper;
+    private double pos;
+    private boolean altControl;
+
     public LiftFlipper(HardwareMap map) {
         super(map);
         flipper = hardwaremap.servo.get(Constants.liftFlipper);
-
+        pos = 0;
+        flipper.setPosition(pos);
+        altControl = false;
     }
 
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
-        if(gamepad2.dpad_down) flipper.setPosition(1);
-        else if(gamepad2.dpad_up) flipper.setPosition(.45);
+        if (gamepad2.left_bumper) altControl = !altControl;
+        if (altControl){
+            if(gamepad2.dpad_up) pos += 0.05;
+            else if(gamepad2.dpad_down) pos -= 0.05;
+            flipper.setPosition(pos);
+        }
+        else {
+            if(gamepad2.dpad_down) flipper.setPosition(0);
+            else if(gamepad2.dpad_left) flipper.setPosition(0.5);
+            else if(gamepad2.dpad_up) flipper.setPosition(1);
+        }
+    }
+
+    @Override
+    public String addTelemetry() {
+        String s =  "Lift flipper \n\t" + flipper.getPosition();
+        s+= "\n " + altControl;
+        return s;
     }
 
     @Override

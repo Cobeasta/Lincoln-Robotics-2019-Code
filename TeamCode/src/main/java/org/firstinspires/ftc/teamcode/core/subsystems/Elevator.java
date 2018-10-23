@@ -18,11 +18,15 @@ public class Elevator extends Subsystem {
 
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
-        upAndDown.setPower(-gamepad2.right_stick_y);
+        upAndDown.setPower(-gamepad2.right_stick_y*.25);
     }
 
     @Override
     public void stop() {
 
+    }
+    @Override
+    public String addTelemetry(){
+        return "";
     }
 }
