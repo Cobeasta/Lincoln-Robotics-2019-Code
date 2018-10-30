@@ -7,13 +7,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.util.Constants;
 
 public class IntakeFlipper extends Subsystem {
-    private double pos = 0;
+
     private Servo flipper;
+    private double pos;
     private boolean altControl;
     public IntakeFlipper(HardwareMap map) {
         super(map);
         flipper = hardwaremap.servo.get(Constants.intakeFlipper);
-        pos = 0;
+        pos = 1;
         flipper.setPosition(pos);
         altControl = false;
     }
@@ -27,8 +28,8 @@ public class IntakeFlipper extends Subsystem {
             flipper.setPosition(pos);
         }
         else {
-            if(gamepad2.a) flipper.setPosition(0);
-            else if(gamepad2.b) flipper.setPosition(0.5);
+            if(gamepad2.a) flipper.setPosition(0.5);
+            //else if(gamepad2.b) flipper.setPosition(0.5);
             else if(gamepad2.y) flipper.setPosition(1);
         }
 
@@ -37,7 +38,9 @@ public class IntakeFlipper extends Subsystem {
 
     @Override
     public String addTelemetry() {
-        return "";
+        String s =  "Intake flipper \n\t" + flipper.getPosition();
+        s+= "\n " + altControl;
+        return s;
     }
 
     @Override

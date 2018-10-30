@@ -15,7 +15,7 @@ public class LiftFlipper extends Subsystem {
     public LiftFlipper(HardwareMap map) {
         super(map);
         flipper = hardwaremap.servo.get(Constants.liftFlipper);
-        pos = 0;
+        pos = 0.5;
         flipper.setPosition(pos);
         altControl = false;
     }
@@ -24,14 +24,14 @@ public class LiftFlipper extends Subsystem {
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
         if (gamepad2.left_bumper) altControl = !altControl;
         if (altControl){
-            if(gamepad2.dpad_up) pos += 0.05;
-            else if(gamepad2.dpad_down) pos -= 0.05;
+            if(gamepad2.dpad_up) pos += 0.1;
+            else if(gamepad2.dpad_down) pos -= 0.1;
             flipper.setPosition(pos);
         }
         else {
-            if(gamepad2.dpad_down) flipper.setPosition(0);
-            else if(gamepad2.dpad_left) flipper.setPosition(0.5);
-            else if(gamepad2.dpad_up) flipper.setPosition(1);
+            if(gamepad2.dpad_down) flipper.setPosition(0.5);
+            //else if(gamepad2.dpad_left) flipper.setPosition(0.5);
+            else if(gamepad2.dpad_up) flipper.setPosition(0);
         }
     }
 

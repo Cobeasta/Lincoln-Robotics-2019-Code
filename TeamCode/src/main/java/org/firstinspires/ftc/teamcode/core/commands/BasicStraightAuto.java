@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.core.Robot;
 
-@Autonomous(name = "Basic Straigh Auto", group = "basic")
+@Autonomous(name = "Basic Straight Auto", group = "basic")
 public class BasicStraightAuto extends LinearOpMode{
 
     @Override
@@ -16,7 +16,7 @@ public class BasicStraightAuto extends LinearOpMode{
         waitForStart();
         while(this.getRuntime() * 1000 < 5000)
         {
-            Robot.chassis.arcadeDrive(.5,0);
+            Robot.chassis.tankDrive(.5,.5);
         }
         Robot.chassis.stop();
     }

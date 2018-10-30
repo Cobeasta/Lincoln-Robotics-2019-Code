@@ -34,7 +34,9 @@ public class Chassis extends Subsystem{
        super(hw);
         leftDrive = hardwaremap.dcMotor.get(Constants.leftDrive);
         rightDrive =hardwaremap.dcMotor.get(Constants.rightDrive);
-        setupGyro();
+       rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+
+       setupGyro();
    }
 
     /**
@@ -92,9 +94,8 @@ public class Chassis extends Subsystem{
      */
     public void tankDrive(double leftPower, double rightPower)
     {
-       leftDrive.setPower(leftPower);
-       rightDrive.setPower(rightPower);
-       rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+       leftDrive.setPower(leftPower * 2);
+       rightDrive.setPower(rightPower * 2);
 
     }
 
@@ -105,8 +106,8 @@ public class Chassis extends Subsystem{
      */
     public void arcadeDrive(double power, double turn)
     {
-       leftDrive.setPower(Util.trim(power + turn, -1, 1));
-       rightDrive.setPower(Util.trim(power - turn, -1, 1));
+       leftDrive.setPower(Util.trim(power + turn, -2, 2));
+       rightDrive.setPower(Util.trim(power + turn, -2, 2));
 
     }
     public void startAccelerationIntegration(){
@@ -142,8 +143,8 @@ public class Chassis extends Subsystem{
     {
         String s = "Chassis \n";
 //        s+= "[Left Drive]" + leftDrive.toString() + "\t[Right Drive: " +rightDrive.toString();
-        s+= "Heading: " +gyro.getAngularOrientation().toString();
-        s+= "Displacement: " + gyro.getPosition().toString();
+        s += "Heading: " +gyro.getAngularOrientation().toString();
+        s += "Displacement: " + gyro.getPosition().toString();
         s += "Velocityy " + gyro.getVelocity().toString();
         return s;
     }

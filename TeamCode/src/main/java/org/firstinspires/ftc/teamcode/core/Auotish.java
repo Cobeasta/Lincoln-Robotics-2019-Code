@@ -1,4 +1,11 @@
 package org.firstinspires.ftc.teamcode.core;
 
-public class Auotish extends Autonomous {
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
+@Autonomous
+
+
+public class Auotish extends Teleop {
+
 }

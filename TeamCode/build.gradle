@@ -13,8 +13,14 @@ apply from: '../build.common.gradle'
 android {
     buildToolsVersion '28.0.2'
     sourceSets { main { jni.srcDirs = ['src/main/jni', 'src/main/jniLibs/'] } }
-}
-dependencies {
-    implementation project(':openCVLibrary343')
+    compileSdkVersion 23
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
+dependencies {
+    implementation project(':FtcRobotController')
+}
