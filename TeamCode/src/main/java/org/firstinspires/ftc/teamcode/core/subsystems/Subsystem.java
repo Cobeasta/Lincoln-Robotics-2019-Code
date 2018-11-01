@@ -17,4 +17,13 @@ public abstract class Subsystem {
     public abstract void teleopControls(Gamepad gamepad1, Gamepad gamepad2);
     public abstract String addTelemetry();
     public abstract void stop();
+
+    public void autoInit()
+    {
+
+    }
+    public void teleopInit()
+    {
+
+    }
 }

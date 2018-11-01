@@ -13,4 +13,7 @@ public class Constants {
     public static String leftDrive = "leftdrive";
     public static String rightDrive = "rightdrive";
     public static double TICKS_TO_INCHES = 1;
+    public static int topClimber = 3000;
+    public static int bottomClimber = 0;
+    public static int middleClimber = 1500;
 }

@@ -147,8 +147,9 @@ public class Chassis extends Subsystem{
     }
 
     /**
-     *
+     *Sets the runmode of the encoders to not use encoders.
      */
+    @Override
     public void teleopInit(){
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
