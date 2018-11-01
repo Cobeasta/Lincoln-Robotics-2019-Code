@@ -21,6 +21,7 @@ import org.firstinspires.ftc.teamcode.util.Util;
 
 public class Chassis extends Subsystem{
  private DcMotor leftDrive, rightDrive;
+ int constru = 0;
  BNO055IMU gyro;
 
     /**
@@ -34,7 +35,10 @@ public class Chassis extends Subsystem{
        super(hw);
         leftDrive = hardwaremap.dcMotor.get(Constants.leftDrive);
         rightDrive =hardwaremap.dcMotor.get(Constants.rightDrive);
-        setupGyro();
+        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+       rightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        constru++;
+       setupGyro();
    }
 
     /**
@@ -49,32 +53,7 @@ public class Chassis extends Subsystem{
         parameters.loggingEnabled      = true;
         parameters.loggingTag          = "IMU";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
-//        parameters.accelerationIntegrationAlgorithm = new BNO055IMU.AccelerationIntegrator() {
-//            @Override
-//            public void initialize(@NonNull BNO055IMU.Parameters parameters, @Nullable Position initialPosition, @Nullable Velocity initialVelocity) {
-//
-//            }
-//
-//            @Override
-//            public Position getPosition() {
-//                return null;
-//            }
-//
-//            @Override
-//            public Velocity getVelocity() {
-//                return null;
-//            }
-//
-//            @Override
-//            public Acceleration getAcceleration() {
-//                return null;
-//            }
-//
-//            @Override
-//            public void update(Acceleration linearAcceleration) {
-//
-//            }
-//        }
+
         gyro = hardwaremap.get(BNO055IMU.class, "imu");
         gyro.initialize(parameters);
 
@@ -94,7 +73,6 @@ public class Chassis extends Subsystem{
     {
        leftDrive.setPower(leftPower);
        rightDrive.setPower(rightPower);
-       rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
 
@@ -121,7 +99,8 @@ public class Chassis extends Subsystem{
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2)
     {
-        tankDrive(gamepad1.left_stick_y, gamepad1.right_stick_y);
+
+        tankDrive(-gamepad1.left_stick_y, -gamepad1.right_stick_y);
     }
 
     /**
@@ -144,9 +123,68 @@ public class Chassis extends Subsystem{
 //        s+= "[Left Drive]" + leftDrive.toString() + "\t[Right Drive: " +rightDrive.toString();
         s+= "Heading: " +gyro.getAngularOrientation().toString();
         s+= "Displacement: " + gyro.getPosition().toString();
-        s += "Velocityy " + gyro.getVelocity().toString();
+        s += "Velocity " + gyro.getVelocity().toString();
+        s += "left drive reversed: " + leftDrive.getDirection() +"\n";
+        s += "rightDrive reversed: " +rightDrive.getDirection();
+        s+= "Left Drive Position: " +leftDrive.getCurrentPosition() +"\n";
+        s += "Right Drive Position: " + rightDrive.getCurrentPosition()+"\n";
+        s+= "constructor ran #: " + constru;
+
+        return s;
+    }
+    public String toString(){
+        String s = "Chassis \n";
+//        s+= "[Left Drive]" + leftDrive.toString() + "\t[Right Drive: " +rightDrive.toString();
+        s+= "Heading: " +gyro.getAngularOrientation().toString();
+        s+= "Displacement: " + gyro.getPosition().toString();
+        s += "Velocity " + gyro.getVelocity().toString();
+        s += "left drive reversed: " + leftDrive.getDirection() +"\n";
+        s += "rightDrive reversed: " +rightDrive.getDirection();
+        s+= "Left Drive Position: " +leftDrive.getCurrentPosition() +"\n";
+        s += "Right Drive Position: " + rightDrive.getCurrentPosition()+"\n";
+        s+= "constructor ran #: " + constru;
         return s;
     }
 
+    /**
+     *
+     */
+    public void teleopInit(){
+        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
 
+    /**
+     *
+     */
+    public void autoInit(){
+        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+    }
+
+    public void driveDistance(){
+
+        leftDrive.setPower(1);
+        rightDrive.setPower(1);
+    }
+    public boolean reachedDistance(){
+        return Math.abs(leftDrive.getTargetPosition() - leftDrive.getCurrentPosition())>50 ||
+                Math.abs(rightDrive.getTargetPosition() - rightDrive.getCurrentPosition()) > 50;
+
+    }
+
+    /**
+     * Sets the target position of the  motors.
+     * @precondition autoInit must be called
+     * @postcondition driveDistance must be called
+     * @param ticks
+     */
+    public void setTargetPosition(int ticks){
+        leftDrive.setTargetPosition(ticks+ leftDrive.getCurrentPosition());
+        rightDrive.setTargetPosition(ticks + rightDrive.getCurrentPosition());
+    }
+    public void resetEncoders()
+    {
+    }
 }

@@ -14,7 +14,6 @@ public class IntakeFlipper extends Subsystem {
         super(map);
         flipper = hardwaremap.servo.get(Constants.intakeFlipper);
         pos = 0;
-        flipper.setPosition(pos);
         altControl = false;
     }
 

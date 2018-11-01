@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.core.Robot;
 
-@Autonomous(name = "Basic Straigh Auto", group = "basic")
+@Autonomous(name = "Basic Straight Auto", group = "basic")
 public class BasicStraightAuto extends LinearOpMode{
 
     @Override

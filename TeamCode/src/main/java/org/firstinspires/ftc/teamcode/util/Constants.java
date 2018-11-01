@@ -12,4 +12,5 @@ public class Constants {
     public static String intakeMotor = "intakemotor";
     public static String leftDrive = "leftdrive";
     public static String rightDrive = "rightdrive";
+    public static double TICKS_TO_INCHES = 1;
 }

@@ -4,14 +4,12 @@ package org.firstinspires.ftc.teamcode.core;
 import java.util.Date;
 
 public abstract class Command {
-    protected Date startTime;
-    private double runTime = 0;
     public boolean initialized = false;
     public boolean parallel = false;
 
     public void init()
     {
-
+        this.initialize();
     }
 
     public abstract void initialize();
