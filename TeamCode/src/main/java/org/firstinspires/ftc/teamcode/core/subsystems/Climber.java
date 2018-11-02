@@ -60,12 +60,15 @@ public class Climber extends Subsystem {
      */
     public void setTargetPosition(int position)
     {
-        motor.setTargetPosition(position);
+        motor.setTargetPosition(position + motor.getCurrentPosition());
     }
     public void runToPosition()
     {
         motor.setPower(1);
     }
-
+    public boolean reachedTargetPosition()
+    {
+        return Math.abs(motor.getTargetPosition() - motor.getCurrentPosition()) > 50;
+    }
 
 }

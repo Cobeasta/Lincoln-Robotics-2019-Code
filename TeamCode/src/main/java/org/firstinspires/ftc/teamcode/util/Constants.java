@@ -16,4 +16,14 @@ public class Constants {
     public static int topClimber = 3000;
     public static int bottomClimber = 0;
     public static int middleClimber = 1500;
+
+    /**
+     * To wirelessly connect to phone,
+     * plug in via USB
+     * In terminal use commands
+     * adb devices
+     * adb tcpip 5555
+     * adb connect <IP address of phone>
+     * adb disconnect <IP adress of phone>
+     */
 }

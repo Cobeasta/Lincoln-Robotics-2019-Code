@@ -17,6 +17,13 @@ public class IntakeFlipper extends Subsystem {
         altControl = false;
     }
 
+    /**
+     * Runs repeatedly during teleop. The right bumper toggles between control modes.
+     * In the first control mode, 3 buttons move the flipper between 3 positions.
+     * In the second control mode, the 2 buttons move theh flipper up and down.
+     * @param gamepad1
+     * @param gamepad2
+     */
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
         if (gamepad2.right_bumper) altControl = !altControl;
