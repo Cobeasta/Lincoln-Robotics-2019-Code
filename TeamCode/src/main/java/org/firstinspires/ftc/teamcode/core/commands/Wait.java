@@ -11,7 +11,6 @@ public class Wait extends TimedCommand {
 
     @Override
     public void initialize() {
-
     }
 
     @Override
@@ -21,6 +20,11 @@ public class Wait extends TimedCommand {
     @Override
     public void stop() {
 
+    }
+    @Override
+    public String toString()
+    {
+        return "Wait: " + this.duration;
     }
 
 }

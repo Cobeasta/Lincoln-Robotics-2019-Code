@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.core;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.teamcode.core.subsystems.Subsystem;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +11,7 @@ import java.util.Date;
 public abstract class Auto extends OpMode{
 private ArrayList<Command> commands = new ArrayList<Command>();
 private ArrayList<Command> activeCommands = new ArrayList<Command>();
-    private State state;
+    private State state = State.INIT;
 
     /**
      * Requires the autonomous to add the commands that will run for the duration of autonomous
@@ -20,11 +23,12 @@ private ArrayList<Command> activeCommands = new ArrayList<Command>();
      */
     @Override
     public void init() {
-        new Robot(hardwareMap);
+        if(!Robot.initialized)new Robot(hardwareMap);
         addCommands();
-        Robot.chassis.startGyro();
+//        Robot.chassis.startGyro();
         state = State.INIT;
         activeCommands.add(commands.get(0));
+        commands.remove(0);
 //Now parse through the next commands and check if they are meant to run at the current command.
         for(Command c: commands){
             if(c.parallel){
@@ -36,12 +40,20 @@ private ArrayList<Command> activeCommands = new ArrayList<Command>();
                 break;
             }
         }
+        Robot.chassis.autoInit();
+        Robot.climber.autoInit();
+        System.out.println("Active Commands:" +activeCommands);
+        System.out.println("Queue: " + commands);
     }
 
     /**
      * Repeats during the match's active time.
      */
     public void loop(){
+        for(Subsystem s: Robot.modules)
+        {
+            telemetry.addData("Subsystem: \n\n", s.addTelemetry());
+        }
         switch(state)
         {
             case INIT:
@@ -50,23 +62,28 @@ private ArrayList<Command> activeCommands = new ArrayList<Command>();
                 {
                     if(!c.initialized)
                     {
+
                         c.init();
+                        System.out.println("Initializing Command: " + c);
                     }
                 }
                 state = State.EXECUTE;
                 break;
             case EXECUTE:
 //                Execute all of the current commands and remove the finished ones.
-                for(Command c:activeCommands){
 
-                    if(c.isFinished()){
-                        c.stop();
-                        activeCommands.remove(c);
-                    }
-                }
                 for(Command c:activeCommands){
                     c.execute();
 
+
+                }
+                for(Command c:activeCommands){
+
+                    if(c.isFinished()){
+                        System.out.println("Removing Command: " + c);
+                        c.stop();
+                        activeCommands.remove(c);
+                    }
                 }
 //                Move to stop once all of the current commands have run.
                 if(activeCommands.size() == 0) state = State.STOP;
@@ -74,6 +91,7 @@ private ArrayList<Command> activeCommands = new ArrayList<Command>();
 
 
             case STOP:
+                System.out.println("State Stop!");
 //                If there is another command, add it.
                 if(commands.size() > 0)
                 {
@@ -93,6 +111,9 @@ private ArrayList<Command> activeCommands = new ArrayList<Command>();
                             break;
                         }
                     }
+                    state = State.INIT;
+                    System.out.println("Active Commands: " + activeCommands);
+                    System.out.println("Queued Commands: " + commands);
                 }
 //                    If there are no more commands, then autonomous is over.
                 else
@@ -107,6 +128,7 @@ private ArrayList<Command> activeCommands = new ArrayList<Command>();
         telemetry.addData("Chassis: ", Robot.chassis);
         telemetry.addData("State: ", state);
         telemetry.addData("current command", activeCommands);
+
     }
 
     /**

@@ -1,27 +1,50 @@
 package org.firstinspires.ftc.teamcode.core.subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.core.commands.RaiseLift;
+import org.firstinspires.ftc.teamcode.util.Constants;
 
 public class Climber extends Subsystem {
 
 
 
-    private DcMotor motor;
+    public DcMotor motor;
+
     public Climber(HardwareMap map) {
         super(map);
-        motor = map.dcMotor.get("lift_motor");
+        this.motor = hardwaremap.dcMotor.get(Constants.climber);
+        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
+        if(gamepad1.left_trigger > 0)
+        {
+            motor.setPower(-gamepad1.left_trigger);
+        }
+        else if(gamepad1.right_trigger > 0)
+        {
+            motor.setPower(gamepad1.right_trigger);
+        }
+        else{
+            motor.setPower(0);
+        }
 
+        if (gamepad1.a){
+            //RaiseLift(Constants.bottomClimber);
+        }
     }
 
     @Override
     public String addTelemetry() {
-        return "";
+        return "Climber: \n Motor Mode: " + motor.getMode()
+                + "\ncurrent power: " +motor.getPower()
+                + "\nSetpoint: " + motor.getTargetPosition()
+                + "\n Is Finished: " + this.reachedTargetPosition();
     }
 
     @Override
@@ -64,11 +87,15 @@ public class Climber extends Subsystem {
     }
     public void runToPosition()
     {
-        motor.setPower(1);
+        motor.setPower(-1);
     }
     public boolean reachedTargetPosition()
     {
-        return Math.abs(motor.getTargetPosition() - motor.getCurrentPosition()) > 50;
+        return Math.abs(motor.getTargetPosition() - motor.getCurrentPosition()) < 5;
+    }
+    public int getCurrentPosition()
+    {
+        return motor.getCurrentPosition();
     }
 
 }

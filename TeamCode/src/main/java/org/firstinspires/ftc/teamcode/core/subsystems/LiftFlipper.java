@@ -16,7 +16,6 @@ public class LiftFlipper extends Subsystem {
         super(map);
         flipper = hardwaremap.servo.get(Constants.liftFlipper);
         pos = 0;
-        flipper.setPosition(pos);
         altControl = false;
     }
 

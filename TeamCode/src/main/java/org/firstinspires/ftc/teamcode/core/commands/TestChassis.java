@@ -26,9 +26,9 @@ public class TestChassis extends Command {
     public void execute() {
     //How we find how long this command has been running.
 
-    //Spin right
-      if(runtime < 3000) Robot.chassis.tankDrive(.5, .5);
-      else if(runtime < 3500) Robot.chassis.stop();
+    //Spin left
+      if(runtime < 1000) Robot.chassis.tankDrive(.5, .5);
+      else if(runtime < 2000) Robot.chassis.stop();
 
     }
 

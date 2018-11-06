@@ -17,6 +17,7 @@ public class Teleop extends OpMode
     new Robot(hardwareMap);
         Robot.chassis.startAccelerationIntegration();
         Robot.chassis.teleopInit();
+        Robot.climber.teleopInit();
     }
 
     /**
