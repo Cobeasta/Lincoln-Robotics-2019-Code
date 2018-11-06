@@ -28,6 +28,6 @@ public class DriveToDistance extends Command {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return Robot.chassis.reachedDistance();
     }
 }

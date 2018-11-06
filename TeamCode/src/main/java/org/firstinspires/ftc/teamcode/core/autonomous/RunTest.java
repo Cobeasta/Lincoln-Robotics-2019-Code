@@ -1,16 +1,25 @@
 package org.firstinspires.ftc.teamcode.core.autonomous;
 
-import org.firstinspires.ftc.teamcode.core.Autonomous;
-import org.firstinspires.ftc.teamcode.core.commands.TestChassis;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
+import org.firstinspires.ftc.teamcode.core.Auto;
+import org.firstinspires.ftc.teamcode.util.Constants;
 
 /**
  * This runs the test command on the following subsystems:
  *      Chassis
  */
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name = "test the robot", group = "poop")
-public class RunTest extends Autonomous {
+@Autonomous(name = "test everything!", group = "poop")
+public class RunTest extends Auto{
+
     @Override
     public void addCommands() {
-        addSequential(new TestChassis());
+        addSequential(new RaiseLift(Constants.topClimber));
+//        addSequential(new DriveToDistance(5000));
+//        addSequential(new AdjustIntake(0));
+//        addSequential(new AdjustLiftFlipper(1));
+//        addSequential(new TurnToAngle(120));
+//        addSequential(new DriveToDistance(5000));
     }
 }
+

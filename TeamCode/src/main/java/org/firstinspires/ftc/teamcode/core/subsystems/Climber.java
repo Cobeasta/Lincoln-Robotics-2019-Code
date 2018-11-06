@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.util.Constants;
+
 public class Climber extends Subsystem {
 
 
@@ -11,17 +13,28 @@ public class Climber extends Subsystem {
     private DcMotor motor;
     public Climber(HardwareMap map) {
         super(map);
-        motor = map.dcMotor.get("lift_motor");
+        motor = map.dcMotor.get(Constants.climber);
     }
 
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
-
+        if(gamepad1.right_trigger > 0.2){
+            motor.setPower(gamepad1.right_trigger);
+        }
+        else if(gamepad1.left_trigger > 0.2){
+            motor.setPower(-gamepad1.left_trigger);
+        }
+        else{
+            motor.setPower(0);
+        }
     }
 
     @Override
     public String addTelemetry() {
-        return "";
+
+        String s = "Climber motor power: " + motor.getPower();
+
+        return s;
     }
 
     @Override

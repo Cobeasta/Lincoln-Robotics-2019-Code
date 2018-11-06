@@ -12,5 +12,19 @@ public class Constants {
     public static String intakeMotor = "intakemotor";
     public static String leftDrive = "leftdrive";
     public static String rightDrive = "rightdrive";
-    public static String botterLifterer = "botlift";
+    public static String climber = "climber";
+    public static double TICKS_TO_INCHES = 1;
+    public static int topClimber = 3000;
+    public static int bottomClimber = 0;
+    public static int middleClimber = 1500;
+
+    /**
+     * To wirelessly connect to phone,
+     * plug in via USB
+     * In terminal use commands
+     * adb devices
+     * adb tcpip 5555
+     * adb connect <IP address of phone>
+     * adb disconnect <IP adress of phone>
+     */
 }

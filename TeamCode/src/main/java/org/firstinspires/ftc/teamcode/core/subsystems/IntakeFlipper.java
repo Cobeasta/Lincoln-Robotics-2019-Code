@@ -7,18 +7,23 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.util.Constants;
 
 public class IntakeFlipper extends Subsystem {
-
+    private double pos = 0;
     private Servo flipper;
-    private double pos;
     private boolean altControl;
     public IntakeFlipper(HardwareMap map) {
         super(map);
         flipper = hardwaremap.servo.get(Constants.intakeFlipper);
-        pos = 1;
-        flipper.setPosition(pos);
+        pos = 0;
         altControl = false;
     }
 
+    /**
+     * Runs repeatedly during teleop. The right bumper toggles between control modes.
+     * In the first control mode, 3 buttons move the flipper between 3 positions.
+     * In the second control mode, the 2 buttons move theh flipper up and down.
+     * @param gamepad1
+     * @param gamepad2
+     */
     @Override
     public void teleopControls(Gamepad gamepad1, Gamepad gamepad2) {
         if (gamepad2.right_bumper) altControl = !altControl;
@@ -28,8 +33,8 @@ public class IntakeFlipper extends Subsystem {
             flipper.setPosition(pos);
         }
         else {
-            if(gamepad2.a) flipper.setPosition(0.5);
-            //else if(gamepad2.b) flipper.setPosition(0.5);
+            if(gamepad2.a) flipper.setPosition(0);
+            else if(gamepad2.b) flipper.setPosition(0.5);
             else if(gamepad2.y) flipper.setPosition(1);
         }
 
@@ -38,13 +43,19 @@ public class IntakeFlipper extends Subsystem {
 
     @Override
     public String addTelemetry() {
-        String s =  "Intake flipper \n\t" + flipper.getPosition();
-        s+= "\n " + altControl;
-        return s;
+        return "";
     }
 
     @Override
     public void stop() {
 
+    }
+
+    public void autoInit(){
+
+    }
+
+    public void setTargetPosition(int position){
+        flipper.setPosition(position);
     }
 }

@@ -2,8 +2,8 @@ package org.firstinspires.ftc.teamcode.core;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.core.subsystems.BotterLifterer;
 import org.firstinspires.ftc.teamcode.core.subsystems.Chassis;
+import org.firstinspires.ftc.teamcode.core.subsystems.Climber;
 import org.firstinspires.ftc.teamcode.core.subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.core.subsystems.IntakeFlipper;
 import org.firstinspires.ftc.teamcode.core.subsystems.IntakeMotor;
@@ -22,7 +22,7 @@ public class Robot{
     public static IntakeFlipper intakeFlipper;
     public static LiftFlipper liftFlipper;
     public static IntakeMotor intakeMotor;
-    public static BotterLifterer botterLifterer;
+    public static Climber climber;
     public static ArrayList<Subsystem> modules = new ArrayList<Subsystem>();
 
     /**
@@ -37,14 +37,15 @@ public class Robot{
  intakeFlipper = new IntakeFlipper(hwMap);
 liftFlipper = new LiftFlipper(hwMap);
 intakeMotor = new IntakeMotor(hwMap);
-botterLifterer = new BotterLifterer(hwMap);
+climber = new Climber(hwMap);
+
 
 modules.add(chassis);
 modules.add(elevator);
 modules.add(intakeFlipper);
 modules.add(liftFlipper);
 modules.add(intakeMotor);
-modules.add(botterLifterer);
+modules.add(climber);
 initialized = true;
 }
 

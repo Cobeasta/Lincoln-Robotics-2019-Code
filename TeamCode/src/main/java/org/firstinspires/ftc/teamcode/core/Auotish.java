@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.core;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import org.firstinspires.ftc.teamcode.core.commands.TestChassis;
 
-@Autonomous
-
-
-public class Auotish extends Teleop {
-
+public class Auotish extends Auto {
+    @Override
+    public void addCommands() {
+        addSequential(new TestChassis());
+    }
 }

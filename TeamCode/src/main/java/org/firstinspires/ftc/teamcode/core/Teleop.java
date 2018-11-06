@@ -14,8 +14,9 @@ public class Teleop extends OpMode
     @Override
     public void init()
     {
-      if(!Robot.initialized)  new Robot(hardwareMap);
+    new Robot(hardwareMap);
         Robot.chassis.startAccelerationIntegration();
+        Robot.chassis.teleopInit();
     }
 
     /**
@@ -28,6 +29,10 @@ public class Teleop extends OpMode
         {
             system.teleopControls(gamepad1, gamepad2);
             telemetry.addData(system.toString(), system.addTelemetry() + "\n\n");
+
+            telemetry.addData("left_stick_y" ,gamepad1.left_stick_y);
+            telemetry.addData("right_stick_y" ,gamepad1.right_stick_y);
+
         }
     }
 
