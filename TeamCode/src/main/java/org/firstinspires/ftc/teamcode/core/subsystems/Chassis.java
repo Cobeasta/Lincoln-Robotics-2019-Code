@@ -16,11 +16,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
+import org.firstinspires.ftc.teamcode.core.Robot;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Util;
 
 public class Chassis extends Subsystem{
- private DcMotor leftDrive, rightDrive;
+ public DcMotor leftDrive, rightDrive;
  int constru = 0;
  BNO055IMU gyro;
 
@@ -38,7 +39,10 @@ public class Chassis extends Subsystem{
         leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
        rightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
         constru++;
-       setupGyro();
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        gyro = (BNO055IMU) hardwaremap.get("gyro");
+      // setupGyro();
    }
 
     /**
@@ -60,7 +64,7 @@ public class Chassis extends Subsystem{
 
     }
     public void startGyro(){
-        gyro.startAccelerationIntegration(new Position(), new Velocity(), 1000);
+    //    gyro.startAccelerationIntegration(new Position(), new Velocity(), 1000);
 
     }
 
@@ -121,8 +125,8 @@ public class Chassis extends Subsystem{
     {
         String s = "Chassis \n";
 //        s+= "[Left Drive]" + leftDrive.toString() + "\t[Right Drive: " +rightDrive.toString();
-        s+= "Heading: " +gyro.getAngularOrientation().toString();
-        s+= "Displacement: " + gyro.getPosition().toString();
+     //   s+= "Heading: " +gyro.getAngularOrientation().toString();
+//        s+= "Displacement: " + gyro.getPosition().toString();
         s += "Velocity " + gyro.getVelocity().toString();
         s += "left drive reversed: " + leftDrive.getDirection() +"\n";
         s += "rightDrive reversed: " +rightDrive.getDirection();
@@ -135,9 +139,9 @@ public class Chassis extends Subsystem{
     public String toString(){
         String s = "Chassis \n";
 //        s+= "[Left Drive]" + leftDrive.toString() + "\t[Right Drive: " +rightDrive.toString();
-        s+= "Heading: " +gyro.getAngularOrientation().toString();
-        s+= "Displacement: " + gyro.getPosition().toString();
-        s += "Velocity " + gyro.getVelocity().toString();
+//        s+= "Heading: " +gyro.getAngularOrientation().toString();
+//        s+= "Displacement: " + gyro.getPosition().toString();
+//        s += "Velocity " + gyro.getVelocity().toString();
         s += "left drive reversed: " + leftDrive.getDirection() +"\n";
         s += "rightDrive reversed: " +rightDrive.getDirection();
         s+= "Left Drive Position: " +leftDrive.getCurrentPosition() +"\n";
@@ -151,14 +155,20 @@ public class Chassis extends Subsystem{
      */
     @Override
     public void teleopInit(){
+        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
-
+    public void reset()
+    {
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
     /**
      *
      */
     public void autoInit(){
+        leftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
         leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
@@ -170,8 +180,7 @@ public class Chassis extends Subsystem{
         rightDrive.setPower(1);
     }
     public boolean reachedDistance(){
-        return Math.abs(leftDrive.getTargetPosition() - leftDrive.getCurrentPosition())>50 ||
-                Math.abs(rightDrive.getTargetPosition() - rightDrive.getCurrentPosition()) > 50;
+        return Math.abs(leftDrive.getCurrentPosition() - leftDrive.getTargetPosition()) < 50;
 
     }
 
@@ -182,10 +191,23 @@ public class Chassis extends Subsystem{
      * @param ticks
      */
     public void setTargetPosition(int ticks){
-        leftDrive.setTargetPosition(ticks+ leftDrive.getCurrentPosition());
-        rightDrive.setTargetPosition(ticks + rightDrive.getCurrentPosition());
+        ticks *= Constants.TICKS_TO_INCHES;
+        leftDrive.setTargetPosition(( leftDrive.getCurrentPosition()-ticks));
+        rightDrive.setTargetPosition((ticks + rightDrive.getCurrentPosition()));
     }
-    public void resetEncoders()
+    public int getLeftCurrentPosition(){
+        return leftDrive.getCurrentPosition();
+    }
+    public int getRightCurrentPosition()
     {
+        return rightDrive.getCurrentPosition();
+    }
+    public int getLeftTargetPositioni()
+    {
+        return leftDrive.getTargetPosition();
+    }
+    public int getRightTargetPosition()
+    {
+        return rightDrive.getTargetPosition();
     }
 }
