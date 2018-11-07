@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.core;
 
 import java.util.Date;
-import java.util.Timer;
 
 public abstract class TimedCommand extends Command{
     protected long duration, initTime, currTime;
@@ -11,6 +10,8 @@ public abstract class TimedCommand extends Command{
     @Override
     public void init(){
         initTime = new Date().getTime();
+        System.out.println("Ran Timed Command init");
+        initialize();
     }
     public abstract void initialize();
 
@@ -19,6 +20,7 @@ public abstract class TimedCommand extends Command{
     @Override
     public boolean isFinished(){
             currTime = new Date().getTime();
+            System.out.println("Ran Timed Command Finish");
             return currTime - initTime > duration;
     }
 }

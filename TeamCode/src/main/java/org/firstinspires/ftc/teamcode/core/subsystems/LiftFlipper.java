@@ -52,4 +52,12 @@ public class LiftFlipper extends Subsystem {
     public void stop() {
 
     }
+
+    public void autoInit(){
+
+    }
+
+    public void setTargetPosition(int position){
+        flipper.setPosition(position);
+    }
 }

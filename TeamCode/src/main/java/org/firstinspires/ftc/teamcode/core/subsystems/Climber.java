@@ -41,7 +41,8 @@ public class Climber extends Subsystem {
 
     @Override
     public String addTelemetry() {
-        return "Climber: \n Motor Mode: " + motor.getMode()
+        return "Climber: " +
+                "\n Motor Mode: " + motor.getMode()
                 + "\ncurrent power: " +motor.getPower()
                 + "\nSetpoint: " + motor.getTargetPosition()
                 + "\n Is Finished: " + this.reachedTargetPosition();
@@ -85,13 +86,15 @@ public class Climber extends Subsystem {
     {
         motor.setTargetPosition(position + motor.getCurrentPosition());
     }
+
     public void runToPosition()
     {
         motor.setPower(-1);
     }
+
     public boolean reachedTargetPosition()
     {
-        return Math.abs(motor.getTargetPosition() - motor.getCurrentPosition()) < 5;
+        return Math.abs(motor.getTargetPosition() - motor.getCurrentPosition()) < 7;
     }
     public int getCurrentPosition()
     {

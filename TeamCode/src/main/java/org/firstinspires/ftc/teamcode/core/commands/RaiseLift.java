@@ -5,23 +5,25 @@ import org.firstinspires.ftc.teamcode.core.Robot;
 
 public class RaiseLift extends Command {
     private boolean initialized = false;
-    private int distance;
+    private int ticks;
     private boolean running = false;
     public RaiseLift(int ticks)
     {
-        this.distance = ticks;
+        this.ticks = ticks;
         System.out.println("New Raise lift Command: Ticks = " + ticks);
     }
     @Override
     public void initialize() {
         initialized = true;
         Robot.climber.autoInit();
-        Robot.climber.setTargetPosition(distance);
+        Robot.climber.setTargetPosition(ticks);
+        System.out.println(Robot.climber.motor.getCurrentPosition());
+        System.out.println("Ran initialize");
     }
 
     @Override
     public void execute() {
-        System.out.println("Lift Position: " + Robot.climber.motor.getCurrentPosition());
+        System.out.println("Lift Position: " + Robot.climber.getCurrentPosition());
         Robot.climber.runToPosition();
 
         if(running != true) System.out.println("Climbing: ");
@@ -37,8 +39,9 @@ public class RaiseLift extends Command {
 
     @Override
     public boolean isFinished() {
-
+        System.out.println("Ran finished");
         return Robot.climber.reachedTargetPosition();
+
     }
     @Override
     public String toString(){

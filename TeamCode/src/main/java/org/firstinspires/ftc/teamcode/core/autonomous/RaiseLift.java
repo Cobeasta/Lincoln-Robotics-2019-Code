@@ -1,12 +1,6 @@
 package org.firstinspires.ftc.teamcode.core.autonomous;
 
 import org.firstinspires.ftc.teamcode.core.Command;
-import org.firstinspires.ftc.teamcode.core.Robot;
-
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.firstinspires.ftc.teamcode.core.subsystems.Climber;
 
 import static org.firstinspires.ftc.teamcode.core.Robot.climber;
 
