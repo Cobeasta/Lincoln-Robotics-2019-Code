@@ -8,7 +8,9 @@ import org.firstinspires.ftc.teamcode.core.Auto;
 public class TestAutonomousCommand extends Auto {
     @Override
     public void addCommands() {
-        addSequential(new DriveToDistance(4000));
+        //addSequential(new DriveToDistance(4000));
+        addParallel(new RaiseLift(2000));
+        addParallel(new DriveToDistance(500));
 
     }
 }

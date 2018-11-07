@@ -14,8 +14,8 @@ public class Constants {
     public static String rightDrive = "rightdrive";
     public static String climber = "climber";
     public static double TICKS_TO_INCHES = 1;
-    public static int topClimber = -20000;
-    public static int bottomClimber= 19000;
+    public static int topClimber = -25000;
+    public static int bottomClimber= 25000;
     public static int landingNumber = 5000;
     public static int middleClimber = 0;
 

@@ -16,7 +16,7 @@ public class BasicStraightAuto extends LinearOpMode{
         waitForStart();
         while(this.getRuntime() * 1000 < 5000)
         {
-            Robot.chassis.arcadeDrive(.5,0);
+            Robot.chassis.tankDrive(.5,.5);
         }
         Robot.chassis.stop();
     }

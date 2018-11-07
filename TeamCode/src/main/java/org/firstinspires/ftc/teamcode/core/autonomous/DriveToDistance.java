@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode.core.autonomous;
 
-import org.firstinspires.ftc.teamcode.core.Auto;
 import org.firstinspires.ftc.teamcode.core.Command;
 import org.firstinspires.ftc.teamcode.core.Robot;
-import org.firstinspires.ftc.teamcode.util.Constants;
 
 public class DriveToDistance extends Command {
     private int inches;

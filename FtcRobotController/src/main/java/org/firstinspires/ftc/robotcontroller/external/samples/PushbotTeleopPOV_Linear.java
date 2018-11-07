@@ -110,7 +110,7 @@ public class PushbotTeleopPOV_Linear extends LinearOpMode {
                 clawOffset -= CLAW_SPEED;
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
-            clawOffset = Range.clip(clawOffset, -0.5, 0.5);
+           /* clawOffset = Range.clip(clawOffset, -0.5, 0.5);
             robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
             robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
@@ -126,7 +126,7 @@ public class PushbotTeleopPOV_Linear extends LinearOpMode {
             telemetry.addData("claw",  "Offset = %.2f", clawOffset);
             telemetry.addData("left",  "%.2f", left);
             telemetry.addData("right", "%.2f", right);
-            telemetry.update();
+            telemetry.update();*/
 
             // Pace this loop so jaw action is reasonable speed.
             sleep(50);
