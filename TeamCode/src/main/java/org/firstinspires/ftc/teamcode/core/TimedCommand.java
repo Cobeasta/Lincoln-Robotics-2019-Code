@@ -11,16 +11,17 @@ public abstract class TimedCommand extends Command{
     public void init(){
         initTime = new Date().getTime();
         System.out.println("Ran Timed Command init");
-        initialize();
+        initialize();// Should call TurnWithTime's initialization method
     }
     public abstract void initialize();
-
+        // Just here to be overridden. Seems weird
 
 
     @Override
     public boolean isFinished(){
-            currTime = new Date().getTime();
-            System.out.println("Ran Timed Command Finish");
-            return currTime - initTime > duration;
+        // Should be called in TurnWithTime.isFinished()
+        currTime = new Date().getTime();
+        System.out.println("Ran Timed Command Finish");
+        return currTime - initTime > duration;
     }
 }

@@ -26,7 +26,7 @@ public class RaiseLift extends Command {
         System.out.println("Lift Position: " + Robot.climber.getCurrentPosition());
         Robot.climber.runToPosition();
 
-        if(running != true) System.out.println("Climbing: ");
+        if(!running) System.out.println("Climbing: ");
 
         running = true;
     }
