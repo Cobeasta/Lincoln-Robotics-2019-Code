@@ -25,7 +25,7 @@ public class ActualAutonomous extends Auto {
         // TODO -250 is slightly too long
         addSequential(new DriveToDistance(-250));
 
-        addSequential(new TurnWithTime(10000, 1, -1));
+        addSequential(new TurnWithTime(1000, 1, -1));
         addSequential(new DriveToDistance(500));
         addSequential(new AdjustIntake(0));
 

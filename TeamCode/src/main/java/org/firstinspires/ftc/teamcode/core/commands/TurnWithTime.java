@@ -1,21 +1,28 @@
 package org.firstinspires.ftc.teamcode.core.commands;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.R;
+import org.firstinspires.ftc.teamcode.core.Command;
 import org.firstinspires.ftc.teamcode.core.Robot;
 import org.firstinspires.ftc.teamcode.core.TimedCommand;
 import org.firstinspires.ftc.teamcode.core.subsystems.Chassis;
 
-public class TurnWithTime extends TimedCommand {
+import java.util.Date;
+
+public class TurnWithTime extends Command {
     private double left, right;
-    //public long duration;
+    public long currTime, initTime;
+    public int counter = 0;
+    public double time;
+    public ElapsedTime runtime = new ElapsedTime();
 
     // Added System.out.println to show when things are run. Helps in debugging
 
-    public TurnWithTime(long time, double left, double right) {
-        super(time);
-        //this.duration = time;
+    public TurnWithTime(double time, double left, double right) {
+        //super(time);
+        this.time = time;
         this.left = left;
         this.right = right;
         System.out.println("Checked TurnWithTime variables");
@@ -32,6 +39,9 @@ public class TurnWithTime extends TimedCommand {
 
         Robot.chassis.leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         Robot.chassis.rightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        initTime = new Date().getTime();
+        System.out.println("Ran Timed Command init");
     }
 
     @Override
@@ -39,7 +49,11 @@ public class TurnWithTime extends TimedCommand {
         System.out.println("TurnWithTime is executed!!!");
 
         // TODO Seems to work, but only goes straight
-        Robot.chassis.tankDrive(left, right);
+        //Robot.chassis.tankDrive(left, right);
+        Robot.chassis.arcadeDrive(1,-1);
+        //Robot.chassis.rightDrive.setPower(left);
+        //Robot.chassis.rightDrive.setPower(right);
+        counter++;
     }
 
     @Override
@@ -51,6 +65,8 @@ public class TurnWithTime extends TimedCommand {
 
     @Override
     public boolean isFinished() {
-        return super.isFinished();
+        currTime = new Date().getTime();
+        System.out.println("Ran Timed Command Finish");
+        return (runtime.seconds()) > time;
     }
 }
